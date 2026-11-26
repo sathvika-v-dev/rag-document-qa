@@ -13,4 +13,4 @@ CREATE TABLE IF NOT EXISTS chat_history(
                """)
 conn.commit()
 conn.close()
-print("Datebase and table created successfully")
+print("Database and table created successfully")

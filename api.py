@@ -14,7 +14,7 @@ load_dotenv()
 groq_client=Groq(api_key=os.getenv("GROQ_API_KEY"))
 app=FastAPI()
 embedding_model=HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-l6-v2"
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 vector_store=Chroma(
     persist_directory="chroma_db",
@@ -54,10 +54,10 @@ def askquestion(request:QuestionRequest):
     results=vector_store.similarity_search(query,k=2)
     context="\n\n".join([doc.page_content for doc in results])
     response=groq_client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-20b",
         messages=[
             {"role":"system","content":"you are a helpful assistant that answers questions based only on the provided context"},
-            {"role":"user","content":f"content:\n{context}\n\nQuestion: {query}"}
+            {"role":"user","content":f"context:\n{context}\n\nQuestion: {query}"}
         ]
     )
     answer=response.choices[0].message.content
