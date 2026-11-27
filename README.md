@@ -1,5 +1,7 @@
 # RAG Document Q&A System
 
+## Live Demo:https://sathvika-rag-document.streamlit.app/
+
 A Retrieval-Augmented Generation (RAG) app. Upload a PDF, ask questions about it, and get answers generated only from the document's content.
 
 ![Demo](screenshot.png)
